@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <title>Scroll Site</title>
+ <style>
+  * {
+   margin: 0;
+   padding: 0;
+  }
+
+
+  .sec1 {
+   background-color: rgb(32, 139, 143);
+   height: 100vh;
+  }
+
+  .sec2 {
+   background-color: rgb(10, 34, 10);
+   height: 500px;
+
+  }
+
+  .sec3 {
+   background-color: rgb(167, 46, 106);
+   height: 1290px;
+  }
+
+  .sec4 {
+   background-color: rgb(102, 43, 28);
+   height: 150vh;
+  }
+
+  .info {
+   position: fixed;
+   left: 0;
+   bottom: -75px;
+   height: 70px;
+   width: 100%;
+   box-shadow: 0 0 3px 3px grey;
+   background-color: rgb(200, 200, 200);
+   font-size: 30px;
+   line-height: 70px;
+   text-align: center;
+   transition: .8s;
+  }
+
+  .appear {
+      bottom: 0;
+  }
+
+ </style>
+</head>
+
+<body>
+
+ <section class="sec1"></section>
+ <section class="sec2"></section>
+ <section class="sec3"></section>
+ <section class="sec4"></section>
+ <div class="info"></div>
+
+ <script>
+
+    const text = document.querySelector('div.info');
+    
+
+     function changeText(){
+         
+        const scrollSize = window.scrollY;
+         
+        const sectionOneHeight = document.querySelector('.sec1').offsetHeight;
+        const sectionTwoHeight = document.querySelector('.sec2').offsetHeight;
+        const sectionThreeHeight = document.querySelector('.sec3').offsetHeight;
+        const sectionFourHeight = document.querySelector('.sec4').offsetHeight;
+
+        const fromBeginingToSectionTwo = document.querySelector('.sec2').offsetTop;
+        const fromBeginingToSectionThree = document.querySelector('.sec3').offsetTop;
+    
+        if (scrollSize > 40 ){
+            text.classList.add('appear');
+        } else {
+            text.classList.remove("appear");
+        }
+
+        if (scrollSize < sectionOneHeight) {
+            text.textContent = "Section 1";
+        }
+        else if (scrollSize < sectionTwoHeight + fromBeginingToSectionTwo) {
+            text.textContent = "Section 2";
+        }
+        else if (scrollSize < sectionThreeHeight + fromBeginingToSectionThree) {
+            text.textContent = "Section 3";
+        }
+        else  {
+            text.textContent = "Section 4";
+        }
+     }
+
+     window.addEventListener('scroll', changeText);
+    
+
+ </script>
+</body>
+
+</html>
